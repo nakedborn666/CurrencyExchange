@@ -6,7 +6,7 @@ class CurrencyCreateDTO(BaseModel):
     model_config = ConfigDict(str_strip_whitespace=True)
     name: str = Field(min_length=1)
     code: str = Field(pattern=r"^[A-Z]{3}$")
-    sign: str = Field(min_length=1)
+    sign: str = Field(min_length=1, max_length=3)
 
 
     @field_validator("code", mode="before")

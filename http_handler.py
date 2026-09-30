@@ -11,11 +11,13 @@ class MyHandler(BaseHTTPRequestHandler):
 
 
     def send_response_json(self, code, data):
-            self.send_response(code)
-            self.send_header("Content-type", "application/json")
-            self.send_header('Access-Control-Allow-Origin', '*')
-            self.end_headers()
-            self.wfile.write(serialize_data_to_json(data).encode("utf-8"))
+        body = serialize_data_to_json(data).encode("utf-8")
+        self.send_response(code)
+        self.send_header("Content-type", "application/json")
+        self.send_header("Content-Length", str(len(body)))
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.end_headers()
+        self.wfile.write(body)
 
 
     def do_GET(self):
