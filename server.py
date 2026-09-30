@@ -7,7 +7,7 @@ from service.currency_service import CurrencyService
 from service.exchange_rate_service import ExchangeRateService
 
 
-def create_server(db, host="localhost", port=8000):
+def create_server(db, host="0.0.0.0", port=8000):
     db.create_tables()
     db.seed_data()
 
